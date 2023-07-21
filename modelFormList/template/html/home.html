@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+{% load dajaxice_templatetags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src = "{% static '/static/jquery.min.js' %}" type = "text/javascript" charset = "utf-8"></script>
+    <script src = "{% static '/static/dajax/jquery.dajax.core.js' %}"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" id = "my_form" accept-charset = "utf-8">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="Submit" onclick = "send_form();">
+    </form>
+
+<script>
+
+   function send_form()
+   {
+      Dajaxice.myapp.send_form(Dajax.process,{'form':$("#my_form").serialize(true)});
+   }
+</script>
+</body>
+</html>
